@@ -46,8 +46,9 @@ class MCBot {
         this.bot.on('end', (reason) => {
             console.log(`[${this.username}] Disconnected: ${reason}`);
 
-            if (reason === "disconnect.quitting") {
-                setTimeout(() => this.initBot(), 5000);
+            if (reason === "socketClosed") {
+                console.log(`[${this.username}] Reconnecting in 5 seconds...`);
+                setTimeout(() => this.reconnect(), 5000);
             }
         });
 
@@ -84,6 +85,17 @@ class MCBot {
 
     sendServerChat(message) {
         this.bot.chat(message);
+    }
+
+    reconnect() {
+        console.log(`[${this.username}] Reconnecting...`);
+        this.bot = mineflayer.createBot({
+            "username": this.username,
+            "host": this.host,
+            "port": this.port,
+            "version": "1.20.1",
+        });
+        this.initEvents();
     }
 }
 
