@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Package into .exe
-        run: pkg . --output build/overblue_bot.exe
+        run: pkg ./index.js --output build/overblue_bot.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
