@@ -103,7 +103,7 @@ class MCBot {
                 console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute AFK request...`);
                 this.sendServerChat('/afk');
-        }
+            }
             if (message.includes('disconnect')) {
                     console.log(`[${this.username}] Disconnecting...`);
                     this.bot.end('disconnect.quitting');
