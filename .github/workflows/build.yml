@@ -30,10 +30,10 @@ jobs:
         run: npm run build
 
       - name: Package into a single file
-        run: pkg ./index.js --output build/
+        run: pkg ./index.js --output build/*.*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: overblue_bot
-          path: build/*
+          path: build/*.*
