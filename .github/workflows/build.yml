@@ -32,5 +32,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build-artifacts
+          name: commit-${{ steps.commit_message.outputs.message }}
           path: build/
