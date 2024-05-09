@@ -105,9 +105,15 @@ class MCBot {
                 this.sendServerChat('/sit');
                 this.sendServerChat('/afk');
             }
+            if (message.includes('homepls')) {
+                // console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
+                console.log(`[${this.username}] Execute Home request...`);
+                this.sendServerChat('/home');
+            }
             if (message.includes('disconnect')) {
                     console.log(`[${this.username}] Disconnecting...`);
                     this.bot.end('disconnect.quitting');
+                    this.reconnect();
             }
         });
 
