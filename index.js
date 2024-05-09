@@ -102,6 +102,7 @@ class MCBot {
             if (message.includes('afkpls')) {
                 console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute AFK request...`);
+                this.sendServerChat('/sit');
                 this.sendServerChat('/afk');
             }
             if (message.includes('disconnect')) {
