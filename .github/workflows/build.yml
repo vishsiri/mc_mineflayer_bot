@@ -32,5 +32,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: overblue_bot
-          path: build/overblue-bot.*
+          name: build-artifacts
+          path: build/
