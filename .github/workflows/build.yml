@@ -3,10 +3,10 @@ name: Build and Package
 on:
   push:
     branches:
-      - main
+      - fluffyworld_bot
   pull_request:
     branches:
-      - main
+      - fluffyworld_bot
 
 jobs:
   build:

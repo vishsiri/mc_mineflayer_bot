@@ -41,9 +41,9 @@ class MCBot {
                 await this.bot.waitForTicks(20);
                 console.log(`[${this.username}] Walk to Warp to Survival...`);
                 // const position = { x: -130.5, y: 127, z: -27.5 };
-                const x = parseFloat(-130.5);
-                const y = parseFloat(127);
-                const z = parseFloat(-27.5);
+                const x = parseFloat(1);
+                const y = parseFloat(82);
+                const z = parseFloat(-475);
                 const position = { x, y, z };
                 const goal = new goals.GoalBlock(position.x, position.y, position.z);
                 await this.bot.waitForTicks(20);
@@ -51,10 +51,6 @@ class MCBot {
                 this.bot.pathfinder.setGoal(goal);
                 this.bot.look(1,0,true)
                 await this.bot.waitForTicks(120);
-                console.log(this.bot.nearestEntity());
-                //right click to playerNPC
-                this.bot.activateEntity(this.bot.entities[130]);
-                this.bot.simpleClick.rightMouse(0);
                 console.log(`[${this.username}] Done...`);
 
                 //change temp to 1
@@ -141,7 +137,7 @@ function startBot() {
     rl.question("Enter username: ", (username) => {
         rl.question("Enter password: ", (password) => {
             rl.question("Enter owner: ", (owner) => {
-                const bot = new MCBot(username, "play.overblue.online", 25565, owner, password);
+                const bot = new MCBot(username, "fluffyworld.online", 25565, owner, password);
                 rl.close();
             });
         });
