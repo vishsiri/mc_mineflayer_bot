@@ -1,0 +1,39 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install pkg
+        run: npm install -g pkg
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build executable
+        run: npm run build
+
+      - name: Package into .exe
+        run: pkg . --output build/overblue_bot.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: overblue_bot
+          path: build/overblue_bot.exe
