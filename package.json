@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pkg -t node18-linux-x64,node18-macos-x64,node18-win-x64 index.js -o overblue-bot"
+    "build": "pkg -t node18-linux-x64,node18-macos-x64,node18-win-x64 index.js -o build/overblue-bot"
   },
   "repository": {
     "type": "git",
