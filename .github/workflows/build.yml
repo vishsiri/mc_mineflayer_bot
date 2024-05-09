@@ -29,11 +29,11 @@ jobs:
       - name: Build executable
         run: npm run build
 
-      - name: Package into .exe
-        run: pkg ./index.js --output build/overblue_bot.exe
+      - name: Package into a single file
+        run: pkg ./index.js --output build/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: overblue_bot
-          path: build/overblue_bot.exe
+          path: build/*
