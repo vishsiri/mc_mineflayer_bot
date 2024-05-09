@@ -95,11 +95,16 @@ class MCBot {
                     console.log(`[${this.username}] Login...`);
                     this.sendServerChat('/login ' + this.password);
             }
-            if (message.includes('tpme')) {
+            if (message.includes('tpame')) {
                     console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                     this.sendServerChat('/msg ' + this.owner + ' teleport to me');
                     this.sendServerChat('/tpa ' + this.owner);
             }
+            if (message.includes('tpme')) {
+                console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
+                this.sendServerChat('/msg ' + this.owner + ' teleport to me');
+                this.sendServerChat('/tp ' + this.owner);
+        }
             if (message.includes('afkpls')) {
                 console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute AFK request...`);
