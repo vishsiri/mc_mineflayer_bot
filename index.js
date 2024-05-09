@@ -1,6 +1,7 @@
 const mineflayer = require('mineflayer');
 const readline = require('readline');
 const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
+const { equal } = require('assert');
 let rl = readline.createInterface(process.stdin, process.stdout);
 let temp = parseInt(0);
 class MCBot {
@@ -108,7 +109,7 @@ class MCBot {
             if (message.includes('homepls')) {
                 // console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute Home request...`);
-                this.sendServerChat('/home');
+                this.sendServerChat('/home' + message.replace('homepls', ''));
             }
             if (message.includes('disconnect')) {
                     console.log(`[${this.username}] Disconnecting...`);
