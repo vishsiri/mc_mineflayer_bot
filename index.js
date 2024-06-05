@@ -142,7 +142,7 @@ class MCBot {
             "username": this.username,
             "host": this.host,
             "port": this.port,
-            "version": "1.20.1",
+            "version": "1.20.4",
         });
         this.initEvents();
     }
@@ -153,7 +153,7 @@ function startBot() {
     rl.question("Enter username: ", (username) => {
         rl.question("Enter password: ", (password) => {
             rl.question("Enter owner: ", (owner) => {
-                const bot = new MCBot(username, "play.overblue.online", 25565, owner, password);
+                const bot = new MCBot(username, "play.lastmine.net", 25569, owner, password);
                 rl.close();
             });
         });
