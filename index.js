@@ -1,9 +1,11 @@
 const mineflayer = require('mineflayer');
 const readline = require('readline');
 const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
-const { equal } = require('assert');
+const minecraftData = require('minecraft-data');
+
 let rl = readline.createInterface(process.stdin, process.stdout);
 let temp = parseInt(0);
+
 class MCBot {
     constructor(username, host, port, owner, password) {
         this.username = username;
@@ -19,11 +21,12 @@ class MCBot {
             "username": this.username,
             "host": this.host,
             "port": this.port,
-            "version": "1.20.1",
+            "version": "1.20.4",
             "logErrors": false, // Optional: Disable error logging to console
         });
 
         this.bot.loadPlugin(pathfinder); // Load the pathfinder plugin
+        this.bot.mcData = minecraftData(this.bot.version);
         this.movements = new Movements(this.bot, this.bot.mcData);
 
         this.initEvents();
@@ -39,36 +42,34 @@ class MCBot {
                 await this.bot.waitForTicks(20);
                 console.log(`[${this.username}] Login...`);
                 this.sendServerChat('/login ' + this.password);
-                await this.bot.waitForTicks(300);
+                await this.bot.waitForTicks(20);
                 console.log(`[${this.username}] Walk to Warp to Survival...`);
-                // const position = { x: -130.5, y: 127, z: -27.5 };
-                const x = parseFloat(0.5);
-                const y = parseFloat(65.0);
-                const z = parseFloat(-10.0);
-                const position = { x, y, z };
+                const position = { x: 0.5, y: 65.0, z: -10.0 };
                 const goal = new goals.GoalBlock(position.x, position.y, position.z);
-                // await this.bot.waitForTicks(200);
+                await this.bot.waitForTicks(20);
                 console.log(`[${this.username}] Walk to Warp to Survival...`);
+                this.bot.pathfinder.setMovements(this.movements); // Set movements
                 this.bot.pathfinder.setGoal(goal);
-                this.bot.look(1,0,true)
+                this.bot.look(1, 0, true);
                 await this.bot.waitForTicks(120);
-                console.log(this.bot.nearestEntity());
-                //right click to playerNPC
-                // this.bot.activateEntity(this.bot.entities[130]);
-                this.bot.simpleClick.rightMouse(0);
-                console.log(`[${this.username}] Done...`);
+                // console.log(this.bot.nearestEntity());
+
+                // Check if the entity exists before interacting with it
+                const entity = this.bot.entities[1682];
+                if (entity) {
+                    this.bot.activateEntity(entity);
+                    this.bot.simpleClick.rightMouse(0);
+                    console.log(`[${this.username}] Done...`);
+                } else {
+                    console.log(`[${this.username}] Entity with ID 1682 not found.`);
+                }
 
                 //change temp to 1
                 temp = parseInt(1);
-            }
-            else if (temp === 1) {
+            } else if (temp === 1) {
                 console.log(`[${this.username}] On Survival Server...`);
             }
         });
-            //stop event
-            // this.bot.activateEntityAt();
-            // console.log(`[${this.username}] Warp to Survival...`);
-            // this.sendServerChat('/cmi server survival -f');
 
         this.bot.on('resourcePack', () => {
             console.log(`[${this.username}] AcceptResourcePack`);
@@ -88,23 +89,23 @@ class MCBot {
             console.log(`[${this.username}] ${username}: ${message}`);
         
             if (message.includes("register")) {
-                    console.log(`[${this.username}] Registering...`);
-                    this.sendServerChat(`/register ${this.password} ${this.password}`);
+                console.log(`[${this.username}] Registering...`);
+                this.sendServerChat(`/register ${this.password} ${this.password}`);
             }
             if (message.includes("login")) {
-                    console.log(`[${this.username}] Login...`);
-                    this.sendServerChat('/login ' + this.password);
+                console.log(`[${this.username}] Login...`);
+                this.sendServerChat('/login ' + this.password);
             }
             if (message.includes('tpame')) {
-                    console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
-                    this.sendServerChat('/msg ' + this.owner + ' teleport to me');
-                    this.sendServerChat('/tpa ' + this.owner);
+                console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
+                this.sendServerChat('/msg ' + this.owner + ' teleport to me');
+                this.sendServerChat('/tpa ' + this.owner);
             }
             if (message.includes('tpme')) {
                 console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 this.sendServerChat('/msg ' + this.owner + ' teleport to me');
                 this.sendServerChat('/tp ' + this.owner);
-        }
+            }
             if (message.includes('afkpls')) {
                 console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute AFK request...`);
@@ -112,14 +113,13 @@ class MCBot {
                 this.sendServerChat('/afk');
             }
             if (message.includes('homepls')) {
-                // console.log(`[${this.username}] Execute Teleport request to ${this.owner}...`);
                 console.log(`[${this.username}] Execute Home request...`);
                 this.sendServerChat('/home' + message.replace('homepls', ''));
             }
             if (message.includes('disconnect')) {
-                    console.log(`[${this.username}] Disconnecting...`);
-                    this.bot.end('disconnect.quitting');
-                    this.reconnect();
+                console.log(`[${this.username}] Disconnecting...`);
+                this.bot.end('disconnect.quitting');
+                this.reconnect();
             }
         });
 
