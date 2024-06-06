@@ -3,10 +3,10 @@ name: Build and Package
 on:
   push:
     branches:
-      - main
+      - lastmine_bot
   pull_request:
     branches:
-      - main
+      - lastmine_bot
 
 jobs:
   build:
