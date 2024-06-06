@@ -39,22 +39,22 @@ class MCBot {
                 await this.bot.waitForTicks(20);
                 console.log(`[${this.username}] Login...`);
                 this.sendServerChat('/login ' + this.password);
-                await this.bot.waitForTicks(20);
+                await this.bot.waitForTicks(300);
                 console.log(`[${this.username}] Walk to Warp to Survival...`);
                 // const position = { x: -130.5, y: 127, z: -27.5 };
-                const x = parseFloat(-0.5);
-                const y = parseFloat(0);
-                const z = parseFloat(-0.5);
+                const x = parseFloat(0.5);
+                const y = parseFloat(65.0);
+                const z = parseFloat(-10.0);
                 const position = { x, y, z };
                 const goal = new goals.GoalBlock(position.x, position.y, position.z);
-                await this.bot.waitForTicks(20);
+                // await this.bot.waitForTicks(200);
                 console.log(`[${this.username}] Walk to Warp to Survival...`);
                 this.bot.pathfinder.setGoal(goal);
                 this.bot.look(1,0,true)
                 await this.bot.waitForTicks(120);
                 console.log(this.bot.nearestEntity());
                 //right click to playerNPC
-                this.bot.activateEntity(this.bot.entities[130]);
+                // this.bot.activateEntity(this.bot.entities[130]);
                 this.bot.simpleClick.rightMouse(0);
                 console.log(`[${this.username}] Done...`);
 
