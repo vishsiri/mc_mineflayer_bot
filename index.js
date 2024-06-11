@@ -153,7 +153,7 @@ function startBot() {
     rl.question("Enter username: ", (username) => {
         rl.question("Enter password: ", (password) => {
             rl.question("Enter owner: ", (owner) => {
-                const bot = new MCBot(username, "play.lastmine.net", 25569, owner, password);
+                const bot = new MCBot(username, "play.lastmine.net", 25565, owner, password);
                 rl.close();
             });
         });
