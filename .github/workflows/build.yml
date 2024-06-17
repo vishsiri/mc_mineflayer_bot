@@ -27,7 +27,8 @@ jobs:
         run: npm install
 
       - name: Build package
-        run: pkg -t node18-linux-x64,node18-macos-x64,node18-win-x64 index.js -o build/overblue-bot
+        # run: pkg -t node18-linux-x64,node18-macos-x64,node18-win-x64 index.js -o build/overblue-bot
+        run: pkg -t node18-win-x64 index.js -o build/lastmine-bot
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2

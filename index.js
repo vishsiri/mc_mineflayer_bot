@@ -52,10 +52,10 @@ class MCBot {
                 this.bot.pathfinder.setGoal(goal);
                 this.bot.look(1, 0, true);
                 await this.bot.waitForTicks(120);
-                // console.log(this.bot.nearestEntity());
+                console.log(this.bot.nearestEntity());
 
                 // Check if the entity exists before interacting with it
-                const entity = this.bot.entities[1682];
+                const entity = this.bot.entities[2425];
                 if (entity) {
                     this.bot.activateEntity(entity);
                     this.bot.simpleClick.rightMouse(0);
