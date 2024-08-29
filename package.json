@@ -6,6 +6,9 @@
   "scripts": {
     "build": "pkg -t node18-linux-x64,node18-macos-x64,node18-win-x64 index.js -o build/overblue-bot"
   },
+  "pkg": {
+    "assets": ["config.yml"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vishsiri/mc_mineflayer_bot.git"
@@ -17,8 +20,9 @@
   },
   "homepage": "https://github.com/vishsiri/mc_mineflayer_bot#readme",
   "dependencies": {
-    "mineflayer": "^4.20.0",
-    "mineflayer-pathfinder": "^2.4.5",
-    "prismarine-viewer": "^1.28.0"
+    "mineflayer": "4.20.0",
+    "mineflayer-pathfinder": "2.4.5",
+    "prismarine-viewer": "1.28.0",
+    "yaml": "2.5.0"
   }
 }
